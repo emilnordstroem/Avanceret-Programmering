@@ -1,7 +1,4 @@
-package bryghus;
-
-import lektion1KoeDatastruktur.bryghus.Produkt;
-import lektion1KoeDatastruktur.bryghus.Salg;
+package lektion1KoeDatastruktur.bryghus;
 
 public class SalgsLinje
 {

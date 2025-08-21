@@ -1,7 +1,5 @@
 package lektion1KoeDatastruktur.bryghus;
 
-import lektion1KoeDatastruktur.bryghus.Produkt;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,20 +7,20 @@ public class Salg
 {
     int ordreNr;
     LocalDate dato;
-    ArrayList<bryghus.SalgsLinje> salgsLinjer = null;
+    ArrayList<SalgsLinje> salgsLinjer;
     SalgsStatus status;
 
     public Salg(int ordreNr)
     {
         this.ordreNr = ordreNr;
         this.dato = LocalDate.now();
-        this.salgsLinjer = new ArrayList<bryghus.SalgsLinje>();
+        this.salgsLinjer = new ArrayList<>();
         this.status = SalgsStatus.EjBetalt;
     }
 
-    public bryghus.SalgsLinje createSalgsLinje(Produkt produkt, int antal, int samletPris)
+    public SalgsLinje createSalgsLinje(Produkt produkt, int antal, int samletPris)
     {
-        bryghus.SalgsLinje salgsLinje = new bryghus.SalgsLinje(this, produkt, antal, samletPris);
+        SalgsLinje salgsLinje = new SalgsLinje(this, produkt, antal, samletPris);
 
         salgsLinjer.add(salgsLinje);
 
@@ -33,7 +31,7 @@ public class Salg
     {
         int samletPris = 0;
 
-        for (bryghus.SalgsLinje s : salgsLinjer)
+        for (SalgsLinje s : salgsLinjer)
         {
             samletPris += s.getSamletPris();
         }
