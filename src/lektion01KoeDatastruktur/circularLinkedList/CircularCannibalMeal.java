@@ -35,7 +35,7 @@ public class CircularCannibalMeal {
 
         Person currentPersonToBeEaten = head;
 
-        int randomCountFromBasePerson = new Random().nextInt(0,10);
+        int randomCountFromBasePerson = new Random().nextInt(0, currentSize);
         for (int counter = 0; counter < randomCountFromBasePerson; counter++) {
             currentPersonToBeEaten = currentPersonToBeEaten.getNextPerson();
         }
