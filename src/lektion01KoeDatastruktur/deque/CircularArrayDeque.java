@@ -1,11 +1,11 @@
-package lektion1KoeDatastruktur.deque;
+package lektion01KoeDatastruktur.deque;
 
 import java.util.NoSuchElementException;
 
 public class CircularArrayDeque implements DequeI {
     private Object[] elementQueue = new Object[10];
-    private int head = 0;
-    private int tail = 0;
+    private int headIndex = 0;
+    private int tailIndex = 0;
     private int currentSize = 0;
 
     public CircularArrayDeque() {}
@@ -14,17 +14,17 @@ public class CircularArrayDeque implements DequeI {
     public void addFirst(Object element) {
         resizeIfNeeded();
         currentSize++;
-        int headIndex = ((head - 1) + elementQueue.length) % elementQueue.length;
-        elementQueue[headIndex] = element;
-        head = headIndex;
+        int newHeadIndex = ((this.headIndex - 1) + elementQueue.length) % elementQueue.length;
+        elementQueue[newHeadIndex] = element;
+        this.headIndex = newHeadIndex;
     }
 
     @Override
     public void addLast(Object element) {
         resizeIfNeeded();
         currentSize++;
-        elementQueue[tail] = element;
-        tail = (tail + 1) % elementQueue.length;
+        elementQueue[tailIndex] = element;
+        tailIndex = (tailIndex + 1) % elementQueue.length;
     }
 
     public void resizeIfNeeded(){
@@ -33,10 +33,10 @@ public class CircularArrayDeque implements DequeI {
         }
         Object[] resizedElementQueue = new Object[elementQueue.length * 2];
         for (int index = 0; index < elementQueue.length; index++) {
-            resizedElementQueue[index] = elementQueue[(head + index) % elementQueue.length];
+            resizedElementQueue[index] = elementQueue[(headIndex + index) % elementQueue.length];
         }
-        head = 0;
-        tail = currentSize;
+        headIndex = 0;
+        tailIndex = currentSize;
         elementQueue = resizedElementQueue;
     }
 
@@ -45,9 +45,9 @@ public class CircularArrayDeque implements DequeI {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        Object elementToBeRemoved = elementQueue[head];
+        Object elementToBeRemoved = elementQueue[headIndex];
         currentSize--;
-        head = head + 1;
+        headIndex = headIndex + 1;
         return elementToBeRemoved;
     }
 
@@ -56,20 +56,20 @@ public class CircularArrayDeque implements DequeI {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        Object elementToBeRemoved = elementQueue[tail - 1];
+        Object elementToBeRemoved = elementQueue[tailIndex - 1];
         currentSize--;
-        tail = tail - 1;
+        tailIndex = tailIndex - 1;
         return elementToBeRemoved;
     }
 
     @Override
     public Object getFirst() {
-        return elementQueue[head];
+        return elementQueue[headIndex];
     }
 
     @Override
     public Object getLast() {
-        return elementQueue[tail];
+        return elementQueue[tailIndex];
     }
 
     @Override
@@ -81,4 +81,5 @@ public class CircularArrayDeque implements DequeI {
     public boolean isEmpty() {
         return currentSize == 0;
     }
+
 }

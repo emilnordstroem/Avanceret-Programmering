@@ -1,7 +1,7 @@
-package lektion1KoeDatastruktur.deque;
+package lektion01KoeDatastruktur.deque;
 
-import lektion1KoeDatastruktur.bryghus.Produkt;
-import lektion1KoeDatastruktur.bryghus.Salg;
+import lektion01KoeDatastruktur.bryghus.Produkt;
+import lektion01KoeDatastruktur.bryghus.Salg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

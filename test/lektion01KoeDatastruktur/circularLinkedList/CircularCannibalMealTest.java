@@ -1,4 +1,4 @@
-package lektion1KoeDatastruktur.circularLinkedList;
+package lektion01KoeDatastruktur.circularLinkedList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

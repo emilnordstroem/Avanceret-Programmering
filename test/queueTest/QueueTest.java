@@ -7,16 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.NoSuchElementException;
 
-import lektion1KoeDatastruktur.queue.NodeQueue;
+import lektion01KoeDatastruktur.queue.NodeQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import lektion1KoeDatastruktur.bryghus.Produkt;
-import lektion1KoeDatastruktur.bryghus.Salg;
-import lektion1KoeDatastruktur.queue.QueueI;
+import lektion01KoeDatastruktur.bryghus.Produkt;
+import lektion01KoeDatastruktur.bryghus.Salg;
+import lektion01KoeDatastruktur.queue.QueueI;
 
 @TestMethodOrder(OrderAnnotation.class)
 class QueueTest

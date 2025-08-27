@@ -1,4 +1,4 @@
-package lektion1KoeDatastruktur.queue;
+package lektion01KoeDatastruktur.queue;
 
 import java.util.NoSuchElementException;
 

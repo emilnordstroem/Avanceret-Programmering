@@ -1,4 +1,4 @@
-package lektion1KoeDatastruktur.deque;
+package lektion01KoeDatastruktur.deque;
 
 public interface DequeI
 {

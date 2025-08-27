@@ -1,4 +1,4 @@
-package lektion1KoeDatastruktur.bryghus;
+package lektion01KoeDatastruktur.bryghus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

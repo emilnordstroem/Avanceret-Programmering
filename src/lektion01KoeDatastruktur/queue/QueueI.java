@@ -1,4 +1,4 @@
-package lektion1KoeDatastruktur.queue;
+package lektion01KoeDatastruktur.queue;
 
 public interface QueueI
 {

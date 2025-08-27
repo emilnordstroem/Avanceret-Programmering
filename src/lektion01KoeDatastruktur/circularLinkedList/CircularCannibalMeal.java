@@ -1,4 +1,4 @@
-package lektion1KoeDatastruktur.circularLinkedList;
+package lektion01KoeDatastruktur.circularLinkedList;
 
 import java.util.NoSuchElementException;
 import java.util.Random;
