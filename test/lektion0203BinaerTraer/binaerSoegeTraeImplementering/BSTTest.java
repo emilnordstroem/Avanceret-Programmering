@@ -1,4 +1,4 @@
-package lektion02BinaerTraer.opgave01;
+package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,6 @@ class BSTTest {
         assertEquals(expectedResult, actualResult);
     }
 
-
     @Test
     void findMax() {
         int expectedResult = 90;
@@ -70,4 +69,39 @@ class BSTTest {
         int actualResult = binarySearchTree.findMin(binarySearchTree.getRoot());
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    void removeMin() {
+        int expectedResult = 11;
+        int actualResult = binarySearchTree.removeMin();
+        assertEquals(expectedResult, actualResult);
+
+        expectedResult = 15;
+        actualResult = binarySearchTree.removeMin();
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void removeMax() {
+        int expectedResult = 90;
+        int actualResult = binarySearchTree.removeMin();
+        assertEquals(expectedResult, actualResult);
+
+        expectedResult = 88;
+        actualResult = binarySearchTree.removeMin();
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void greateThan() {
+    }
+
+    @Test
+    void numberOfLeaves() {
+    }
+
+    @Test
+    void heightNodeCount() {
+    }
+    
 }

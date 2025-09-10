@@ -1,4 +1,4 @@
-package lektion02BinaerTraer.binaerSoegeTraer;
+package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
 
 public interface Tree<E>  {
   /** Return true if the element is in the tree */

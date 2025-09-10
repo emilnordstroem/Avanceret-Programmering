@@ -1,9 +1,12 @@
-package lektion02BinaerTraer.binaerSoegeTraer;
+package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class BST<E> implements Tree<E> {
     protected TreeNode<E> root;
     protected int size = 0;
-    protected java.util.Comparator<E> c;
+    protected Comparator<E> c;
 
     /**
      * Create a default BST with a natural order comparator
@@ -85,28 +88,47 @@ public class BST<E> implements Tree<E> {
     @Override
     /** Inorder traversal from the root */
     public void inorder() {
-        //TODO
-        // left as an exercise
+        inorder(root);
     }
 
-
+    public void inorder(TreeNode<E> node){
+        if (node == null) {
+            return;
+        }
+        inorder(node.left);
+        System.out.println(node.element);
+        inorder(node.right);
+    }
 
     @Override
     /** Postorder traversal from the root */
     public void postorder() {
-        //TODO
-        // left as an exercise
+        postorder(root);
     }
 
-
+    public void postorder(TreeNode<E> node){
+        if (node == null) {
+            return;
+        }
+        postorder(node.left);
+        postorder(node.right);
+        System.out.println(node.element);
+    }
 
     @Override
     /** Preorder traversal from the root */
     public void preorder() {
-        //TODO
-        // left as an exercise
+        preorder(root);
     }
 
+    private void preorder(TreeNode<E> node){
+        if(node == null){
+            return;
+        }
+        System.out.println(node.element);
+        preorder(node.left);
+        preorder(node.right);
+    }
 
     /**
      * This inner class is static, because it does not access
@@ -198,6 +220,83 @@ public class BST<E> implements Tree<E> {
 //
     //-------------------------------------------------------------------
 
+    public boolean isLeaf(TreeNode<E> node){
+        return node.left == null
+                && node.right == null;
+    }
 
+    public boolean isInternal(TreeNode<E> node){
+        return node.left != null || node.right != null;
+    }
+
+    public int height(TreeNode<E> root){
+        if (root == null) {
+            return -1;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    public int totalSumOfElements(TreeNode<Integer> node){
+       if (node == null) {
+           return 0;
+       }
+       return node.element + totalSumOfElements(node.left) + totalSumOfElements(node.right);
+    }
+
+    public int findMax(TreeNode<Integer> node){
+        if (node.right == null) {
+            return node.element;
+        }
+        return findMax(node.right);
+    }
+
+    public int findMin(TreeNode<Integer> node){
+        if (node.left == null) {
+            return node.element;
+        }
+        return findMin(node.left);
+    }
+
+// Lektion 3
+    //-------------------------------------------------------------------
+    // Opgave 02
+
+    public E removeMin(){
+        if (root.left == null) {
+            E removedElement = root.element;
+            root = null;
+            return removedElement;
+        }
+        return removeMin(root, root.left);
+    }
+
+    public E removeMin(TreeNode<E> parentNode, TreeNode<E> currentNode){
+        if (currentNode.left == null) {
+
+        }
+        return removeMin(currentNode, currentNode.left);
+    }
+
+    public E removeMax() {
+        return null;
+    }
+
+    public ArrayList<E> greateThan (E element){
+        return new ArrayList<>();
+    }
+
+    //-------------------------------------------------------------------
+    // Opgave 04
+
+    public int numberOfLeaves() {
+        return 0;
+    }
+
+    public int heightNodeCount(int targetHeight){
+        return 0;
+    }
 
 }

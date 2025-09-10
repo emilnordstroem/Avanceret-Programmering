@@ -1,4 +1,4 @@
-package lektion02BinaerTraer.opgave01;
+package lektion0203BinaerTraer.binaerSoegeTraer;
 
 public class BST<E> implements Tree<E> {
     protected TreeNode<E> root;
@@ -85,47 +85,28 @@ public class BST<E> implements Tree<E> {
     @Override
     /** Inorder traversal from the root */
     public void inorder() {
-        inorder(root);
+        //TODO
+        // left as an exercise
     }
 
-    public void inorder(TreeNode<E> node){
-        if (node == null) {
-            return;
-        }
-        inorder(node.left);
-        System.out.println(node.element);
-        inorder(node.right);
-    }
+
 
     @Override
     /** Postorder traversal from the root */
     public void postorder() {
-        postorder(root);
+        //TODO
+        // left as an exercise
     }
 
-    public void postorder(TreeNode<E> node){
-        if (node == null) {
-            return;
-        }
-        postorder(node.left);
-        postorder(node.right);
-        System.out.println(node.element);
-    }
+
 
     @Override
     /** Preorder traversal from the root */
     public void preorder() {
-        preorder(root);
+        //TODO
+        // left as an exercise
     }
 
-    private void preorder(TreeNode<E> node){
-        if(node == null){
-            return;
-        }
-        System.out.println(node.element);
-        preorder(node.left);
-        preorder(node.right);
-    }
 
     /**
      * This inner class is static, because it does not access
@@ -217,62 +198,6 @@ public class BST<E> implements Tree<E> {
 //
     //-------------------------------------------------------------------
 
-    public boolean isLeaf(TreeNode<E> node){
-        return node.left == null
-                && node.right == null;
-    }
 
-    public boolean isInternal(TreeNode<E> node){
-        return node.left != null || node.right != null;
-    }
-
-    public int height(TreeNode<E> root){
-        if (root == null) {
-            return -1;
-        }
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
-
-        return Math.max(leftHeight, rightHeight) + 1;
-    }
-
-    public int totalSumOfElements(TreeNode<Integer> node){
-       if (node == null) {
-           return 0;
-       }
-       return node.element + totalSumOfElements(node.left) + totalSumOfElements(node.right);
-    }
-
-    public int findMax(TreeNode<Integer> node){
-        if (node == null) {
-            return 0;
-        }
-
-        int largestFromLeft = findMax(node.left);
-        int largestFromRight = findMax(node.right);
-        int largestFound = Math.max(largestFromLeft, largestFromRight);
-
-        return Math.max(node.element, largestFound);
-    }
-
-    public int findMin(TreeNode<Integer> node){
-        if (node == null) {
-            return -1;
-        }
-
-        int smallestFromLeft = findMin(node.left);
-        int smallestFromRight = findMin(node.right);
-
-        if (smallestFromLeft == -1 && smallestFromRight == -1) {
-            return node.element;
-        } else if (smallestFromLeft == -1) {
-            return Math.min(node.element, smallestFromRight);
-        } else if (smallestFromRight == -1) {
-            return Math.min(node.element, smallestFromLeft);
-        } else {
-            int smallestFound = Math.min(smallestFromLeft, smallestFromRight);
-            return Math.min(node.element, smallestFound);
-        }
-    }
 
 }

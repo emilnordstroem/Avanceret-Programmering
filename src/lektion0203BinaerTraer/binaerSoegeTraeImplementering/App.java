@@ -1,4 +1,4 @@
-package lektion02BinaerTraer.opgave01;
+package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
 
 public class App {
     public static void main(String[] args) {
