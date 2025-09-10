@@ -3,6 +3,9 @@ package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTTest {
@@ -84,16 +87,26 @@ class BSTTest {
     @Test
     void removeMax() {
         int expectedResult = 90;
-        int actualResult = binarySearchTree.removeMin();
+        int actualResult = binarySearchTree.removeMax();
         assertEquals(expectedResult, actualResult);
 
         expectedResult = 88;
-        actualResult = binarySearchTree.removeMin();
+        actualResult = binarySearchTree.removeMax();
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
     void greateThan() {
+        ArrayList<Integer> expectedResult = new ArrayList<>();
+        expectedResult.add(15);
+        ArrayList<Integer> actualResult = binarySearchTree.greateThan(11);
+        assertEquals(expectedResult, actualResult);
+
+        expectedResult = new ArrayList<>();
+        expectedResult.add(90);
+        expectedResult.add(88);
+        actualResult = binarySearchTree.greateThan(77);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -103,5 +116,5 @@ class BSTTest {
     @Test
     void heightNodeCount() {
     }
-    
+
 }

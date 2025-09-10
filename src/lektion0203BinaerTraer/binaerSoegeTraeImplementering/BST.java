@@ -265,27 +265,84 @@ public class BST<E> implements Tree<E> {
     // Opgave 02
 
     public E removeMin(){
-        if (root.left == null) {
-            E removedElement = root.element;
-            root = null;
-            return removedElement;
+        if (root == null) {
+            throw new IllegalArgumentException();
         }
         return removeMin(root, root.left);
     }
-
-    public E removeMin(TreeNode<E> parentNode, TreeNode<E> currentNode){
-        if (currentNode.left == null) {
-
+    public E removeMin(TreeNode<E> parentNode,
+                       TreeNode<E> currentNode) {
+        if (currentNode.left == null && currentNode.right == null) {
+            parentNode.left = null;
+            return currentNode.element;
+        } else if (currentNode.left == null)  {
+            E elementRemoved = currentNode.element;
+            TreeNode<E> replaceCurrentWithThisNode = findLeftMostLargestNode(currentNode.right);
+            replaceNodesLeft(parentNode, replaceCurrentWithThisNode);
+            return elementRemoved;
         }
         return removeMin(currentNode, currentNode.left);
     }
+    public TreeNode<E> findLeftMostLargestNode(TreeNode<E> currentNode) {
+        if (currentNode.right == null) {
+            return currentNode;
+        }
+        return findLeftMostLargestNode(currentNode.right);
+    }
+    public void replaceNodesLeft(TreeNode<E> parentNode,
+                             TreeNode<E> replacedWithNode) {
+        parentNode.left = replacedWithNode;
+    }
+
 
     public E removeMax() {
-        return null;
+        if (root == null) {
+            throw new NullPointerException();
+        }
+        return removeMax(root, root.right);
+    }
+    public E removeMax(TreeNode<E> parentNode,
+                       TreeNode<E> currentNode){
+        if (currentNode.right == null && currentNode.left == null) {
+            parentNode.right = null;
+            return currentNode.element;
+        } else if (currentNode.right == null) {
+            E elementRemoved = currentNode.element;
+            TreeNode<E> replaceCurrentWithThisNode = findRightMostLargestNode(currentNode.left);
+            replaceNodesRight(parentNode, replaceCurrentWithThisNode);
+            return elementRemoved;
+        }
+        return removeMax(currentNode, currentNode.right);
+    }
+    public TreeNode<E> findRightMostLargestNode(TreeNode<E> currentNode) {
+        if (currentNode.left == null) {
+            return currentNode;
+        }
+        return findLeftMostLargestNode(currentNode.left);
+    }
+    public void replaceNodesRight(TreeNode<E> parentNode,
+                                  TreeNode<E> replacedWithNode){
+        parentNode.right = replacedWithNode;
     }
 
     public ArrayList<E> greateThan (E element){
-        return new ArrayList<>();
+        TreeNode<E> elementNode = findNodeContainingElement(element, root);
+        return greaterThan(new ArrayList<>(), elementNode);
+    }
+
+    public TreeNode<E> findNodeContainingElement(E target, TreeNode<E> currentNode){
+        if (c.compare(target, currentNode.element) == 0) {
+            return currentNode;
+        } else if (c.compare(target, currentNode.element) < 0) {
+            return findNodeContainingElement(target, currentNode.left);
+        } else {
+            return findNodeContainingElement(target, currentNode.right);
+        }
+    }
+
+    public ArrayList<E> greaterThan (ArrayList<E> elementList,
+                                     TreeNode<E> currentNode) {
+        return null;
     }
 
     //-------------------------------------------------------------------
