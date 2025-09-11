@@ -2,6 +2,7 @@ package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 public class BST<E> implements Tree<E> {
     protected TreeNode<E> root;
@@ -270,7 +271,8 @@ public class BST<E> implements Tree<E> {
         }
         return removeMin(root, root.left);
     }
-    public E removeMin(TreeNode<E> parentNode,
+
+    private E removeMin(TreeNode<E> parentNode,
                        TreeNode<E> currentNode) {
         if (currentNode.left == null && currentNode.right == null) {
             parentNode.left = null;
@@ -283,17 +285,18 @@ public class BST<E> implements Tree<E> {
         }
         return removeMin(currentNode, currentNode.left);
     }
-    public TreeNode<E> findLeftMostLargestNode(TreeNode<E> currentNode) {
+
+    private TreeNode<E> findLeftMostLargestNode(TreeNode<E> currentNode) {
         if (currentNode.right == null) {
             return currentNode;
         }
         return findLeftMostLargestNode(currentNode.right);
     }
-    public void replaceNodesLeft(TreeNode<E> parentNode,
+
+    private void replaceNodesLeft(TreeNode<E> parentNode,
                              TreeNode<E> replacedWithNode) {
         parentNode.left = replacedWithNode;
     }
-
 
     public E removeMax() {
         if (root == null) {
@@ -301,7 +304,8 @@ public class BST<E> implements Tree<E> {
         }
         return removeMax(root, root.right);
     }
-    public E removeMax(TreeNode<E> parentNode,
+
+    private E removeMax(TreeNode<E> parentNode,
                        TreeNode<E> currentNode){
         if (currentNode.right == null && currentNode.left == null) {
             parentNode.right = null;
@@ -314,46 +318,90 @@ public class BST<E> implements Tree<E> {
         }
         return removeMax(currentNode, currentNode.right);
     }
-    public TreeNode<E> findRightMostLargestNode(TreeNode<E> currentNode) {
+
+    private TreeNode<E> findRightMostLargestNode(TreeNode<E> currentNode) {
         if (currentNode.left == null) {
             return currentNode;
         }
         return findLeftMostLargestNode(currentNode.left);
     }
-    public void replaceNodesRight(TreeNode<E> parentNode,
+
+    private void replaceNodesRight(TreeNode<E> parentNode,
                                   TreeNode<E> replacedWithNode){
         parentNode.right = replacedWithNode;
     }
 
-    public ArrayList<E> greateThan (E element){
-        TreeNode<E> elementNode = findNodeContainingElement(element, root);
-        return greaterThan(new ArrayList<>(), elementNode);
+    public ArrayList<E> greaterThan (E element){
+        return greaterThan(root, new ArrayList<>(), element);
     }
 
-    public TreeNode<E> findNodeContainingElement(E target, TreeNode<E> currentNode){
-        if (c.compare(target, currentNode.element) == 0) {
-            return currentNode;
-        } else if (c.compare(target, currentNode.element) < 0) {
-            return findNodeContainingElement(target, currentNode.left);
-        } else {
-            return findNodeContainingElement(target, currentNode.right);
+    private ArrayList<E> greaterThan (TreeNode<E> currentNode, ArrayList<E> elementsGreaterThan, E compareElement) {
+        if (currentNode == null) {
+            return elementsGreaterThan;
         }
-    }
+        E currentElement = currentNode.element;
+        int compareResult = c.compare(currentElement, compareElement);
+        if (compareResult > 0) {
+            elementsGreaterThan.add(currentElement);
+            greaterThan(
+                    currentNode.left,
+                    elementsGreaterThan,
+                    compareElement
+            );
+            greaterThan(
+                    currentNode.right,
+                    elementsGreaterThan,
+                    compareElement
+            );
+        } else {
+            greaterThan(
+                    currentNode.right,
+                    elementsGreaterThan,
+                    compareElement
+            );
+        }
 
-    public ArrayList<E> greaterThan (ArrayList<E> elementList,
-                                     TreeNode<E> currentNode) {
-        return null;
+        return elementsGreaterThan;
     }
 
     //-------------------------------------------------------------------
     // Opgave 04
 
     public int numberOfLeaves() {
-        return 0;
+        return numberOfLeaves(0, root);
+    }
+
+    private int numberOfLeaves (int counter, TreeNode<E> currentNode) {
+        if (currentNode == null) {
+            return counter;
+        } else if (isLeaf(currentNode)) {
+            return counter + 1;
+        }
+
+        return numberOfLeaves(counter, currentNode.left) + numberOfLeaves(counter, currentNode.right);
     }
 
     public int heightNodeCount(int targetHeight){
-        return 0;
+        return heightNodeCount(0, targetHeight, 0, root);
+    }
+
+    private int heightNodeCount(int currentHeight, int targetHeight, int nodeCounter, TreeNode<E> currentNode){
+        if (currentNode == null) {
+            return nodeCounter;
+        } else if (currentHeight == targetHeight) {
+            return nodeCounter + 1;
+        }
+        return heightNodeCount(
+                currentHeight + 1,
+                targetHeight,
+                nodeCounter,
+                currentNode.left
+        ) + heightNodeCount(
+                currentHeight + 1,
+                targetHeight,
+                nodeCounter,
+                currentNode.right
+        );
     }
 
 }

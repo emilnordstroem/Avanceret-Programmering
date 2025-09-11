@@ -98,23 +98,41 @@ class BSTTest {
     @Test
     void greateThan() {
         ArrayList<Integer> expectedResult = new ArrayList<>();
-        expectedResult.add(15);
-        ArrayList<Integer> actualResult = binarySearchTree.greateThan(11);
+        expectedResult.add(77);
+        expectedResult.add(90);
+        expectedResult.add(88);
+        ArrayList<Integer> actualResult = binarySearchTree.greaterThan(45);
         assertEquals(expectedResult, actualResult);
 
         expectedResult = new ArrayList<>();
         expectedResult.add(90);
         expectedResult.add(88);
-        actualResult = binarySearchTree.greateThan(77);
+        actualResult = binarySearchTree.greaterThan(77);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
     void numberOfLeaves() {
+        int expectedResult = 3;
+        int actualResult = binarySearchTree.numberOfLeaves();
+        assertEquals(expectedResult, actualResult);
+
+        binarySearchTree.insert(100);
+        expectedResult = 4;
+        actualResult = binarySearchTree.numberOfLeaves();
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
     void heightNodeCount() {
+        int expectedResult = 3;
+        int actualResult = binarySearchTree.heightNodeCount(2);
+        assertEquals(expectedResult, actualResult);
+
+        binarySearchTree.insert(66);
+        expectedResult = 4;
+        actualResult = binarySearchTree.heightNodeCount(2);
+        assertEquals(expectedResult, actualResult);
     }
 
 }
