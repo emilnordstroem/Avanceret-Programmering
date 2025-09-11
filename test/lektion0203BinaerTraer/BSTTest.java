@@ -1,10 +1,10 @@
-package lektion0203BinaerTraer.binaerSoegeTraeImplementering;
+package lektion0203BinaerTraer;
 
+import lektion0203BinaerTraer.binaerSoegeTraeImplementering.BST;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +55,7 @@ class BSTTest {
     @Test
     void totalSumOfElements() {
         int expectedResult = 403;
-        int actualResult = binarySearchTree.totalSumOfElements(binarySearchTree.root);
+        int actualResult = binarySearchTree.totalSumOfElements(binarySearchTree.getRoot());
         assertEquals(expectedResult, actualResult);
     }
 
