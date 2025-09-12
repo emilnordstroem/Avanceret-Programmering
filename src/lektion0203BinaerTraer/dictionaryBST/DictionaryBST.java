@@ -43,13 +43,12 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 	public V put(K key, V value) {
 		if (root == null) {
 			root = new Node(key, value);
-        } else {
-			put(null, root, key, value);
+			return value;
         }
-        return value;
+		return put(null, root, key, value);
     }
 
-	private void put(Node parentNode, Node currentNode, K key, V value){
+	private V put(Node parentNode, Node currentNode, K key, V value){
 		if (currentNode == null) {
 			int compareResult = parentNode.key.compareTo(key);
 			if (compareResult < 0) {
@@ -58,15 +57,18 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 				parentNode.right = new Node(key, value);
 			}
 		} else {
+			V currentNodeValue = currentNode.value;
 			int compareResult = currentNode.key.compareTo(key);
 			if (compareResult == 0) {
 				currentNode.value = value;
 			} else if (compareResult < 0) {
-				put(currentNode, currentNode.left, key, value);
+				return put(currentNode, currentNode.left, key, value);
 			} else {
-				put(currentNode, currentNode.right, key, value);
+				return put(currentNode, currentNode.right, key, value);
 			}
+			return currentNodeValue;
 		}
+		return value;
 	}
 
 	@Override

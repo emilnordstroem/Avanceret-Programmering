@@ -42,7 +42,6 @@ class DictionaryBSTTest {
 
         assertEquals("hans", dictionary.put(8, "Ida"));
         assertEquals("Ida", dictionary.get(8));
-
     }
 
 }
