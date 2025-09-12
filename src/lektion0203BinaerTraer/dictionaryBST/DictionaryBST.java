@@ -1,5 +1,7 @@
 package lektion0203BinaerTraer.dictionaryBST;
 
+import java.util.NoSuchElementException;
+
 public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, V> {
 
 	private Node root;
@@ -73,8 +75,30 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 
 	@Override
 	public V remove(K key) {
-		// TODO - Ekstra opgave
-		return null;
+		if (root == null || key == null) {
+			throw new NullPointerException();
+		}
+		return remove(key, null, root);
+	}
+
+	public V remove(K target, Node parentNode, Node currentNode) {
+		if (currentNode == null) {
+			throw new NoSuchElementException();
+		}
+		int compareResult = currentNode.key.compareTo(target);
+		if (compareResult == 0) {
+			compareResult = parentNode.key.compareTo(target);
+			if (compareResult < 0) {
+
+			} else {
+
+			}
+		} else if (compareResult < 0) {
+			return remove(target, currentNode, currentNode.left);
+		} else {
+			return remove(target, currentNode, currentNode.right);
+		}
+		return currentNode.value;
 	}
 
 	@Override
