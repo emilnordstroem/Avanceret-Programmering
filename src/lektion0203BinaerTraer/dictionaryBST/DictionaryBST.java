@@ -1,10 +1,5 @@
 package lektion0203BinaerTraer.dictionaryBST;
 
-import com.sun.source.tree.IfTree;
-
-import java.util.Currency;
-import java.util.NoSuchElementException;
-
 public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, V> {
 
 	private Node root;
@@ -90,45 +85,60 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 	public V remove(K key) {
 		if (root == null
 				|| key == null) {
-			throw new NullPointerException();
+			return null;
 		}
-		Node removedNode = locateAndRemove(null, root, key);
-		if (removedNode == null) {
-			throw new NoSuchElementException();
-		}
-
-		return null;
+        return locateAndRemove(null, root, key);
 	}
 
-	private Node locateAndRemove (Node parentNode, Node currentNode, K targetKey) {
+	private V locateAndRemove (Node parentNode, Node currentNode, K targetKey) {
+		if (currentNode == null) {
+			return null;
+		}
+		V foundValue;
 		int compareKeyResult = currentNode.key.compareTo(targetKey);
-		if (compareKeyResult == 0) {
-			if (isLeaf(currentNode)) {
-				compareKeyResult = parentNode.key.compareTo(targetKey);
-				if (compareKeyResult < 0) {
-					parentNode.left = null;
-				} else {
-					parentNode.right = null;
-				}
-			} else {
-				if (hasOnlyLeftChild(currentNode)) {
-					parentNode.left = currentNode.left;
-				} else if (hasOnlyRightChild(currentNode)) {
-					parentNode.right = currentNode.right;
-				}
-
-			}
-			return currentNode;
-		} else if (compareKeyResult < 0) {
+		if (compareKeyResult < 0) {
 			return locateAndRemove(currentNode, currentNode.left, targetKey);
-		} else {
+		} else if (compareKeyResult > 0) {
 			return locateAndRemove(currentNode, currentNode.right, targetKey);
+		} else {
+			foundValue = currentNode.value;
+			if (isLeaf(currentNode)) {
+				replaceChildNode(parentNode, currentNode, null);
+			} else if (hasOnlyLeftChild(currentNode)) {
+				replaceChildNode(parentNode, currentNode, currentNode.left);
+			} else if (hasOnlyRightChild(currentNode)) {
+				replaceChildNode(parentNode, currentNode, currentNode.right);
+			} else {
+				Node successorNode = findMinimum(currentNode.right);
+				currentNode.key = successorNode.key;
+				currentNode.value = successorNode.value;
+				// I ignore the return of locateAndRemove - otherwise the foundValue isn't consistent
+				locateAndRemove(currentNode, currentNode.right, successorNode.key);
+			}
+			return foundValue;
 		}
 	}
 
 	public boolean isLeaf (Node node) {
 		return node.left == null
 				&& node.right == null;
+	}
+
+	private void replaceChildNode(Node parent, Node oldChild, Node newChild) {
+		if (parent == null) {
+			root = newChild;
+		} else if (parent.left == oldChild) {
+			parent.left = newChild;
+		} else {
+			parent.right = newChild;
+		}
+	}
+
+	private Node findMinimum(Node node) {
+		if (node.left == null) {
+			return node;
+		}
+		return findMinimum(node.left);
 	}
 
 	public boolean hasOnlyLeftChild(Node node){
