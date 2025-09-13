@@ -1,5 +1,8 @@
 package lektion0203BinaerTraer.dictionaryBST;
 
+import com.sun.source.tree.IfTree;
+
+import java.util.Currency;
 import java.util.NoSuchElementException;
 
 public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, V> {
@@ -52,53 +55,40 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 
 	private V put(Node parentNode, Node currentNode, K key, V value){
 		if (currentNode == null) {
-			int compareResult = parentNode.key.compareTo(key);
-			if (compareResult < 0) {
-				parentNode.left = new Node(key, value);
-			} else {
-				parentNode.right = new Node(key, value);
-			}
+			return putNewNode(parentNode, key, value);
+		}
+
+		V currentNodeValue = currentNode.value;
+		int compareResult = currentNode.key.compareTo(key);
+
+		if (compareResult == 0) {
+			replaceNodeValues(currentNode, value);
+		} else if (compareResult < 0) {
+			return put(currentNode, currentNode.left, key, value);
 		} else {
-			V currentNodeValue = currentNode.value;
-			int compareResult = currentNode.key.compareTo(key);
-			if (compareResult == 0) {
-				currentNode.value = value;
-			} else if (compareResult < 0) {
-				return put(currentNode, currentNode.left, key, value);
-			} else {
-				return put(currentNode, currentNode.right, key, value);
-			}
-			return currentNodeValue;
+			return put(currentNode, currentNode.right, key, value);
+		}
+
+		return currentNodeValue;
+	}
+
+	private V putNewNode(Node node, K key, V value){
+		int compareResult = node.key.compareTo(key);
+		if (compareResult < 0) {
+			node.left = new Node(key, value);
+		} else {
+			node.right = new Node(key, value);
 		}
 		return value;
 	}
 
-	@Override
-	public V remove(K key) {
-		if (root == null || key == null) {
-			throw new NullPointerException();
-		}
-		return remove(key, null, root);
+	private void replaceNodeValues (Node nodeToModify, V valueToPut) {
+		nodeToModify.value = valueToPut;
 	}
 
-	public V remove(K target, Node parentNode, Node currentNode) {
-		if (currentNode == null) {
-			throw new NoSuchElementException();
-		}
-		int compareResult = currentNode.key.compareTo(target);
-		if (compareResult == 0) {
-			compareResult = parentNode.key.compareTo(target);
-			if (compareResult < 0) {
-
-			} else {
-
-			}
-		} else if (compareResult < 0) {
-			return remove(target, currentNode, currentNode.left);
-		} else {
-			return remove(target, currentNode, currentNode.right);
-		}
-		return currentNode.value;
+	@Override
+	public V remove(K key) {
+		return null;
 	}
 
 	@Override
