@@ -88,7 +88,57 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 
 	@Override
 	public V remove(K key) {
+		if (root == null
+				|| key == null) {
+			throw new NullPointerException();
+		}
+		Node removedNode = locateAndRemove(null, root, key);
+		if (removedNode == null) {
+			throw new NoSuchElementException();
+		}
+
 		return null;
+	}
+
+	private Node locateAndRemove (Node parentNode, Node currentNode, K targetKey) {
+		int compareKeyResult = currentNode.key.compareTo(targetKey);
+		if (compareKeyResult == 0) {
+			if (isLeaf(currentNode)) {
+				compareKeyResult = parentNode.key.compareTo(targetKey);
+				if (compareKeyResult < 0) {
+					parentNode.left = null;
+				} else {
+					parentNode.right = null;
+				}
+			} else {
+				if (hasOnlyLeftChild(currentNode)) {
+					parentNode.left = currentNode.left;
+				} else if (hasOnlyRightChild(currentNode)) {
+					parentNode.right = currentNode.right;
+				}
+
+			}
+			return currentNode;
+		} else if (compareKeyResult < 0) {
+			return locateAndRemove(currentNode, currentNode.left, targetKey);
+		} else {
+			return locateAndRemove(currentNode, currentNode.right, targetKey);
+		}
+	}
+
+	public boolean isLeaf (Node node) {
+		return node.left == null
+				&& node.right == null;
+	}
+
+	public boolean hasOnlyLeftChild(Node node){
+		return node.left != null
+				&& node.right == null;
+	}
+
+	public boolean hasOnlyRightChild(Node node){
+		return node.left == null
+				&& node.right != null;
 	}
 
 	@Override
