@@ -28,4 +28,5 @@ class HashSetLinearProbingTest {
         assertTrue(names.remove("Harry"));
         assertFalse(names.remove("Harry"));
     }
+
 }

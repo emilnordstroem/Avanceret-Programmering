@@ -41,16 +41,23 @@ public class HashSetLinearProbing {
 	 */
 	public boolean add(Object x) {
 		int hashIndex = hashValue(x);
+
+		int firstDetectedDelete = -1;
 		while (buckets[hashIndex] != null) {
+			if (!buckets[hashIndex].equals(DELETED)
+					&& buckets[hashIndex].equals(x)) {
+				return false;
+			} else if (buckets[hashIndex].equals(DELETED)
+					&& firstDetectedDelete == -1) {
+				firstDetectedDelete = hashIndex;
+			}
 			hashIndex++;
 			hashIndex %= buckets.length;
 		}
-		if (buckets[hashIndex] == null) {
-			buckets[hashIndex] = x;
-			currentSize++;
-			return true;
-		}
-		return false;
+		int position = (firstDetectedDelete != -1) ? firstDetectedDelete : hashIndex;
+		buckets[position] = x;
+		currentSize++;
+		return true;
 	}
 
 	/**
@@ -63,13 +70,18 @@ public class HashSetLinearProbing {
 	 */
 	public boolean remove(Object x) {
 		int hashIndex = hashValue(x);
+		int startIndex = hashIndex;
 		while (buckets[hashIndex] != null) {
 			if (buckets[hashIndex].equals(x)) {
 				buckets[hashIndex] = DELETED;
+				currentSize--;
 				return true;
 			}
 			hashIndex++;
 			hashIndex %= buckets.length;
+			if (hashIndex == startIndex) {
+				break;
+			}
 		}
 		return false;
 	}
