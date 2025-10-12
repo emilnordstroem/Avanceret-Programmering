@@ -1,4 +1,4 @@
-package lektion04Hashing;
+package lektion0405Hashing.hashCollision;
 
 /**
  * This program demonstrates the hash set class.

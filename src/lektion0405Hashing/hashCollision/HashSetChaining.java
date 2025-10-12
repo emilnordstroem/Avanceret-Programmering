@@ -1,7 +1,4 @@
-package lektion04Hashing;
-
-import java.util.Iterator;
-import java.util.LinkedList;
+package lektion0405Hashing.hashCollision;
 
 /**
  * This class implements a hash set using separate chaining.

@@ -1,4 +1,4 @@
-package lektion04Hashing;
+package lektion0405Hashing.hashCollision;
 
 /**
  * This class implements a hash set using separate chaining.

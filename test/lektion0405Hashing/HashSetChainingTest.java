@@ -1,6 +1,6 @@
-package lektion04Hashing;
+package lektion0405Hashing;
 
-import org.junit.jupiter.api.BeforeEach;
+import lektion0405Hashing.hashCollision.HashSetChaining;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
