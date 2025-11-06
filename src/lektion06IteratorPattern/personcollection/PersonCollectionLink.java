@@ -172,7 +172,7 @@ public class PersonCollectionLink implements PersonCollectionI {
 
         @Override
         public boolean hasNext() {
-            return currentNode != null && currentNode.next != null;
+            return currentNode.next != null;
         }
 
         @Override
