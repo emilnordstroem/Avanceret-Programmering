@@ -1,4 +1,4 @@
-package play;
+package lektion07AdapterTemplatePattern.templateMethodPatter.play;
 
 // Abstrakt klasse Question
 public abstract class Question {

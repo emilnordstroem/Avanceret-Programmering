@@ -1,4 +1,4 @@
-package play;
+package lektion07AdapterTemplatePattern.templateMethodPatter.play;
 
 import java.util.Scanner;
 

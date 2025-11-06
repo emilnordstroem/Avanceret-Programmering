@@ -1,4 +1,4 @@
-package play;
+package lektion07AdapterTemplatePattern.templateMethodPatter.play;
 
 // Konkrete implementeringer af Game
 public class QuizGame extends Game {

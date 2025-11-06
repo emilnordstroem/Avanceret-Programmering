@@ -1,4 +1,4 @@
-package play;
+package lektion07AdapterTemplatePattern.templateMethodPatter.play;
 
 public class App {
     public static void main(String[] args) {
