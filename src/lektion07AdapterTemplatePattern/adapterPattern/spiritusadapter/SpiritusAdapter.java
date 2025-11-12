@@ -1,5 +1,8 @@
 package lektion07AdapterTemplatePattern.adapterPattern.spiritusadapter;
 
+
+import lektion07AdapterTemplatePattern.adapterPattern.spiritusadapter.superSalg.Spiritus;
+
 public class SpiritusAdapter implements Vare {
     private Spiritus spiritus;
 
@@ -31,4 +34,5 @@ public class SpiritusAdapter implements Vare {
     public double beregnMoms() {
         return spiritus.hentMoms();
     }
+
 }

@@ -1,7 +1,7 @@
 
-package adresseadapter;
+package lektion07AdapterTemplatePattern.adapterPattern.adresseadapter;
 
-public class KundeToAdresseAdapter implements Adresse {
+public class KundeToAdresseAdapter implements adresseadapter.Adresse {
 	private Kunde kunde;
 
 	public KundeToAdresseAdapter(Kunde kunde) {

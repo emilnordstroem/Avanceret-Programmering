@@ -1,4 +1,4 @@
-package lektion07AdapterTemplatePattern.adapterPattern.spiritusadapter;
+package lektion07AdapterTemplatePattern.adapterPattern.spiritusadapter.superSalg;
 
 public class Spiritus {
     private int prisen;

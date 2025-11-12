@@ -1,14 +1,16 @@
 package adresseadapter;
 
-public class TestAdapter {
+import lektion07AdapterTemplatePattern.adapterPattern.adresseadapter.Kunde;
+import lektion07AdapterTemplatePattern.adapterPattern.adresseadapter.KundeToAdresseAdapter;
 
+public class TestAdapter {
 	
 	public static void main(String[] args) {
 		 Kunde k1 = new Kunde("Margrethe", 1001, "Læsøgade", 4, "Århus", 8000);
 	        Kunde k2 = new Kunde("Torben", 1002, "Samsøgade", 6, "Højbjerg", 8270);
 	        
-	        Adresse ad1 = new KundeToAdresseAdapter(k1);
-	        Adresse ad2 = new KundeToAdresseAdapter(k2);
+	        adresseadapter.Adresse ad1 = new KundeToAdresseAdapter(k1);
+	        adresseadapter.Adresse ad2 = new KundeToAdresseAdapter(k2);
 	        
 	        System.out.println(ad1.getVejOgHusNr());
 	        System.out.println(ad1.getPostNrOgByNavn());

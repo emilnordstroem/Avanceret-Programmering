@@ -1,5 +1,6 @@
 package lektion07AdapterTemplatePattern.adapterPattern.spiritusadapter;
 
+import lektion07AdapterTemplatePattern.adapterPattern.spiritusadapter.superSalg.Spiritus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

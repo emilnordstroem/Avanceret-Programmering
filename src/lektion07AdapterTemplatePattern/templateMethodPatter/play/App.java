@@ -1,6 +1,7 @@
 package lektion07AdapterTemplatePattern.templateMethodPatter.play;
 
 public class App {
+
     public static void main(String[] args) {
         // Oprettelse af spørgsmål
         Question[] questions = {
@@ -15,4 +16,3 @@ public class App {
     }
 
 }
-

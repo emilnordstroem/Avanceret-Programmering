@@ -1,4 +1,4 @@
-package adresseadapter;
+package lektion07AdapterTemplatePattern.adapterPattern.adresseadapter;
 
 public class Kunde {
 	private String navn;

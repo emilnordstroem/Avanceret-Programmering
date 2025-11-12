@@ -26,4 +26,5 @@ public class OpenAnswerQuestion extends Question {
     protected boolean checkAnswer(String answer) {
         return true;
     }
+
 }
