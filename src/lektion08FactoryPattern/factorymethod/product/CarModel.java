@@ -1,25 +1,21 @@
 package lektion08FactoryPattern.factorymethod.product;
 
 public enum CarModel {
-    FOCUS("Ford"),
-    MUSTANG("Ford"),
-    MAVERICK("Ford"),
+    FOCUS(CarBrand.FORD),
+    MUSTANG(CarBrand.FORD),
+    MAVERICK(CarBrand.FORD),
 
-    ARTEON("Volkswagen"),
-    TROC("Volkswagen"),
-    AMAROK("Volkswagen"),
+    ARTEON(CarBrand.VOLKSWAGEN),
+    TROC(CarBrand.VOLKSWAGEN),
+    AMAROK(CarBrand.VOLKSWAGEN),
 
-    MODELS("Tesla"),
-    CYBERTRUCK("Tesla");
+    MODELS(CarBrand.TESLA),
+    CYBERTRUCK(CarBrand.TESLA);
 
-    private final String brand;
+    private final CarBrand brand;
 
-    CarModel(String brand) {
+    CarModel(CarBrand brand) {
         this.brand = brand;
-    }
-
-    public String getBrand() {
-        return brand;
     }
 
 }
