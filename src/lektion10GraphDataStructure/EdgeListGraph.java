@@ -145,6 +145,7 @@ public class EdgeListGraph<V> implements Graph<V> {
       incidentEdges.forEach(edge -> remove(edge.u, edge.v));
     }
 
+    reindexEdges(getIndex(v));
     vertices.remove(v);
 
     return true;
@@ -157,12 +158,24 @@ public class EdgeListGraph<V> implements Graph<V> {
     Iterator<Edge> iterator = edges.iterator();
     while (iterator.hasNext()) {
       Edge currentEdge = iterator.next();
-      if ((currentEdge.u == u && currentEdge.v == v) || (currentEdge.u == v && currentEdge.v == u)) {
+      if ((currentEdge.u == u && currentEdge.v == v)
+              || (currentEdge.u == v && currentEdge.v == u)) {
         iterator.remove();
         removed = true;
       }
     }
     return removed;
+  }
+
+  private void reindexEdges (int baseIndex) {
+    edges.forEach(edge -> {
+      if (edge.u > baseIndex) {
+        edge.u--;
+      }
+      if (edge.v > baseIndex) {
+        edge.v--;
+      }
+    });
   }
 
   // Opgave 1: Largest Vertex Value in Graph
