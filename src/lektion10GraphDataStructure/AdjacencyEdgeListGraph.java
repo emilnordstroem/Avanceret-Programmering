@@ -143,6 +143,7 @@ public class AdjacencyEdgeListGraph<V> implements Graph<V> {
             incidentEdges.forEach(edge -> remove(edge.u, edge.v));
         }
 
+        reindexEdges(getIndex(v));
         vertices.remove(v);
         orderedVertices.remove(v);
         return true;
@@ -166,6 +167,19 @@ public class AdjacencyEdgeListGraph<V> implements Graph<V> {
 
         }
         return edgesWasRemoved;
+    }
+
+    private void reindexEdges (int baseIndex) {
+        vertices.forEach((vertex, edges) -> {
+            edges.forEach(edge -> {
+                if (edge.u > baseIndex) {
+                    edge.u--;
+                }
+                if (edge.v > baseIndex) {
+                    edge.v--;
+                }
+            });
+        });
     }
 
 }
