@@ -1,7 +1,5 @@
 package lektion11GraphAlgorithm;
 
-import lektion01KoeDatastruktur.deque.DequeI;
-
 import java.util.*;
 
 public class GraphAlgorithms {
@@ -28,7 +26,7 @@ public class GraphAlgorithms {
             int neighborIndex = graph.getIndex(neighborVertex);
             if (!visitedVertices[neighborIndex]) {
                 possiblePath.add(neighborVertex);
-                dfsRecursive(graph, neighborVertex, possiblePath, visitedVertices);
+                return dfsRecursive(graph, neighborVertex, possiblePath, visitedVertices);
             }
         }
 
@@ -68,15 +66,46 @@ public class GraphAlgorithms {
      * Pre: Grafen er ikke tom
      */
     public static <V> boolean connected(Graph<V> graph) {
-        // TODO Opgave 4
-        return false;
+        if (graph.getVertices().isEmpty()) {
+            return false;
+        }
+
+        List<V> vertices = graph.getVertices();
+        for (V vertex : vertices) {
+            int numberOfNeighbors = graph.getNeighbors(vertex).size();
+            if (numberOfNeighbors != (vertices.size() - 1)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
      * Returnerer om der er en vej fra v1 til v2 i graph
      */
-    public static <V> boolean isPath(Graph<V> graph, V v1, V v2) {
-        // TODO Opgave 5
+    public static <V> boolean dfsPath(Graph<V> graph, V baseVertex, V destination) {
+        boolean[] visitedVertices = new boolean[graph.getVertices().size()];
+        return dfsPath(graph, visitedVertices, baseVertex, destination);
+    }
+
+    public static <V> boolean dfsPath(Graph<V> graph, boolean[] visitedVertices, V currentVertex, V destination) {
+        int currentVertexIndex = graph.getIndex(currentVertex);
+        if (visitedVertices[currentVertexIndex]) {
+            return false;
+        } else if (currentVertex.equals(destination)) {
+            return true;
+        }
+        visitedVertices[currentVertexIndex] = true;
+
+        for (V neighborVertex : graph.getNeighbors(currentVertex)) {
+            if (dfsPath(graph, visitedVertices, neighborVertex, destination)) {
+                return true;
+            }
+        }
+
         return false;
     }
+
+
 }

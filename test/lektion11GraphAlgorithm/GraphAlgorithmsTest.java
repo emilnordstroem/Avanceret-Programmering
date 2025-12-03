@@ -45,9 +45,29 @@ class GraphAlgorithmsTest {
 
     @Test
     void connected() {
+        boolean actualResult = GraphAlgorithms.connected(graph);
+        assertFalse(actualResult);
+
+        graph.addEdge(2, 0); // from 123 to 15
+        graph.addEdge(4, 1); // from 6 to 38
+        actualResult = GraphAlgorithms.connected(graph);
+        assertTrue(actualResult);
     }
 
     @Test
     void isPath() {
+        boolean actualResult = GraphAlgorithms.dfsPath(graph, 15, 38);
+        assertTrue(actualResult);
+
+        actualResult = GraphAlgorithms.dfsPath(graph, 15, 123);
+        assertTrue(actualResult);
+
+        graph.addVertex(13); // 5
+        actualResult = GraphAlgorithms.dfsPath(graph, 15, 13);
+        assertFalse(actualResult);
+
+        graph.addEdge(0, 5); // 15 and 13
+        actualResult = GraphAlgorithms.dfsPath(graph, 15, 13);
+        assertTrue(actualResult);
     }
 }
